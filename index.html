@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>華語練習室</title><style>body{background:#eef4f1;color:#183b32;font:18px system-ui;margin:0}main{max-width:600px;margin:auto;padding:20px}section{background:white;padding:22px;border-radius:22px;box-shadow:0 4px 20px #183b3210}button,select{font:inherit;width:100%;padding:15px;margin:6px 0;border:1px solid #bccfc5;border-radius:12px;background:white;color:inherit;text-align:left}button.primary{background:#176b54;color:white;text-align:center}button.good{background:#ccebd7}button.bad{background:#f9d8d3}small{color:#55746a}progress{width:100%;accent-color:#176b54}.pic{background:#eff5f2;text-align:center;padding:24px;border-radius:12px;white-space:pre-line;font-size:24px}h1{margin-bottom:4px}</style><main><small>TOCFL · A1–A2</small><h1>華語練習室</h1><div id="app"></div></main><script>
+const data=`生活|📮|我要寄信，應該去哪裡？|郵局|銀行|餐廳|機場
+生活|🍜 🍚 🥛|我想吃麵，要點什麼？|牛肉麵|白飯|牛奶|咖啡
+生活|🚉|我要坐火車，應該去哪裡？|火車站|郵局|公園|超級市場
+生活|👓|眼鏡要怎麼用？|戴眼鏡|穿眼鏡|吃眼鏡|喝眼鏡
+生活|🚌|公車上沒有空位，他只好怎麼樣？|站著|躺著|游泳|跑步
+語法|昨天|我昨天買＿＿一本書。|了|著|得|的
+語法|日本 ✓ 韓國 ✗|小明去過日本，還沒＿＿韓國。|去過|去著|去得|去的
+語法|🎧 📖|他一邊聽音樂，＿＿看書。|一邊|所以|但是|因為
+語法|🍎 10元|這個蘋果又大＿＿便宜。|又|所以|可是|因為
+語法|🌧|＿＿外面下雨，所以我不去公園。|因為|雖然|但是|而且
+語法|📚|雖然中文不容易，＿＿我很喜歡學中文。|但是|所以|因為|為了
+語法|📝|如果明天有考試，我＿＿要早一點起床。|就|過|著|的
+語法|🚆|我是坐火車來台北＿＿。|的|得|著|過
+語法|🍚 → 📖|吃飯＿＿，我再看書。|以後|以前的|的時候的|著
+語法|😴|他每天睡＿＿小時的覺。|八個|八點|八月|八號
+語法|🏠 → 🏫|我每天＿＿家裡走到學校。|從|離|比|跟
+語法|🏫 ↔ 2公里 ↔ 🏠|學校＿＿我家兩公里。|離|比|往|跟
+比較|小明 180公分；小華 170公分|哪一句是對的？|小明比小華高十公分。|小華比小明高。|他們一樣高。|小明比小華矮。
+比較|昨天 30°C；今天 30°C|哪一句是對的？|今天跟昨天一樣熱。|今天比昨天熱。|昨天比較熱。|今天比昨天冷。
+比較|紅衣服500元；白衣服300元|哪一句是對的？|白衣服比紅衣服便宜兩百元。|紅衣服比較便宜。|兩件一樣貴。|白衣服比較貴。
+比較|哥哥25歲；弟弟20歲|哪一句是對的？|弟弟比哥哥小五歲。|哥哥比弟弟小。|他們一樣大。|弟弟比哥哥大五歲。
+比較|茶30元；咖啡60元；牛奶40元|哪一種飲料最貴？|咖啡|茶|牛奶|三種一樣貴
+比較|公車40分鐘；捷運20分鐘|到同一個地方，坐哪一種車比較快？|捷運|公車|一樣快|都要四十分鐘
+比較|小美160公分；小芳161公分|哪一句是對的？|小芳比小美高一點。|小美比小芳高一點。|小芳比小美矮。|她們一樣高。
+生活資訊|原價1000元，今天打八折|今天買這件衣服要多少錢？|800元|200元|1000元|80元
+生活資訊|星期一至五 09:00–18:00；六日休息|什麼時候可以來買東西？|星期三下午兩點|星期日上午十點|星期六下午三點|星期一晚上八點
+生活資訊|台北08:00出發；台中10:00到|坐這班火車要多久？|兩個小時|八個小時|十個小時|一個小時
+生活資訊|牛肉麵120元；水餃60元；紅茶30元|一碗牛肉麵和一杯紅茶多少錢？|150元|180元|90元|120元
+生活資訊|買兩杯咖啡送一杯，每杯50元|付一百元可以拿到幾杯咖啡？|三杯|兩杯|一杯|四杯
+生活資訊|中文考試：星期三上午九點，第三教室|學生應該去哪裡考試？|第三教室|第一教室|餐廳|郵局`.split('\n').map(x=>x.split('|'));
+let root=document.querySelector('#app'),q=[],i=0,s=0,w=[],opts=[];function shuffle(a){a=[...a];for(let k=a.length-1;k>0;k--){let j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}function home(){root.innerHTML='<section><h2>選擇練習範圍</h2><select id="cat"><option>全部</option><option>生活</option><option>語法</option><option>比較</option><option>生活資訊</option></select><p>30題・隨機順序</p><button class="primary" id="start">開始練習</button><small id="last"></small></section>';try{document.querySelector('#last').textContent=localStorage.last||''}catch(e){}document.querySelector('#start').onclick=()=>start(data.filter(x=>cat.value==='全部'||x[0]===cat.value))}function start(a){q=shuffle(a);i=0;s=0;w=[];show()}function show(){let a=q[i];opts=shuffle(a.slice(3));root.innerHTML=`<p>${a[0]}　${i+1}/${q.length}　答對 ${s}</p><progress max="${q.length}" value="${i}"></progress><section><div class="pic">${a[1]}</div><h2>${a[2]}</h2>${opts.map((x,j)=>`<button data-n="${j}">${'ABCD'[j]}. ${x}</button>`).join('')}<div id="feedback" aria-live="polite"></div></section>`;root.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{let ok=opts[+b.dataset.n]===a[3];if(ok)s++;else w.push(a);root.querySelectorAll('[data-n]').forEach(c=>{c.disabled=true;if(opts[+c.dataset.n]===a[3])c.className='good';else if(c===b)c.className='bad'});feedback.innerHTML=`<p>${ok?'答對了！':'正確答案：'+a[3]}</p><button class="primary" id="next">下一題</button>`;next.onclick=()=>{i++;i===q.length?end():show()}})}function end(){let result=`${s}/${q.length}（${Math.round(s/q.length*100)}分）`;try{localStorage.last='上次成績：'+result}catch(e){}root.innerHTML=`<section><h2>練習完成</h2><h1>${result}</h1><button class="primary" id="retry">再練一次</button>${w.length?'<button id="wrong">錯題重練</button>':''}<button id="back">回首頁</button></section>`;retry.onclick=()=>start(q);if(w.length)wrong.onclick=()=>start(w);back.onclick=home}home();</script></html>
