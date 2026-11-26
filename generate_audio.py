@@ -33,19 +33,4 @@ async def main():
             print(q['id'],flush=True)
         pathlib.Path('audio').mkdir(exist_ok=True)
         for q in questions: (pathlib.Path('audio')/f'{q["id"]}.mp3').write_bytes((root/f'{q["id"]}.mp3').read_bytes())
-    s=s.replace('3.3','3.4')
-    start=s.index('function addAudio(q) {')
-    end=s.index('if (window.speechSynthesis)\n    window.speechSynthesis.getVoices();',start)
-    s=s[:start]+"""function addAudio(q) {
-    var player=document.createElement('audio');
-    player.controls=true; player.preload='none'; player.style.width='100%';
-    player.src='audio/'+q.id+'.mp3?v=34';
-    app.appendChild(player);
-    player.onplay=function(){if(activeAudio && activeAudio!==player) activeAudio.pause(); activeAudio=player;};
-    btn('audio',t(19),function(){stopAudio(); activeAudio=player; player.currentTime=0; var p=player.play(); if(p && p.catch) p.catch(function(){status.textContent=t(25);});});
-    var status=document.createElement('small'); app.appendChild(status);
-    player.onerror=function(){status.textContent=t(25);};
-}
-"""+s[end:]
-    p.write_text(s,encoding='utf-8')
 asyncio.run(main())
