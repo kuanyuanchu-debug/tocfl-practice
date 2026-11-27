@@ -6,7 +6,7 @@ async def main():
     s=p.read_text(encoding='utf-8')
     bank=json.JSONDecoder().raw_decode(re.search(r'(?:var|const|let)\s+bank\s*=\s*',s) and s[re.search(r'(?:var|const|let)\s+bank\s*=\s*',s).end():])[0]
     questions=[q for q in bank if q.get('audio')]
-    assert len(bank)==600 and len(questions)==90
+    assert len(bank)==900 and len(questions)==130
     with tempfile.TemporaryDirectory() as tmp:
         root=pathlib.Path(tmp)
         for q in questions:

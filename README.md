@@ -1,2 +1,4 @@
-# 華語冒險島 3.4
-完整重建包：600 題，90 題聽力。將 index.html、generate_audio.py、README.md 和 .github/workflows/edge-audio.yml 放在 repository 根目錄的對應路徑。Actions 執行 Generate Taiwan Mandarin audio，成功後會提交 audio/ 下的 MP3。音檔尚未生成前聽力不可播放。Settings > Pages 選 main / (root)。若 Actions 無法推送，檢查 Settings > Actions > General 的 workflow permissions。Edge TTS 為非官方介面，公開使用前確認條款。
+華語冒險島 3.5.1
+900 題，130 題聽力。
+上傳 index.html、generate_audio.py，並將 edge-audio.yml 放在 .github/workflows/。執行 Actions 生成 MP3。音檔未包含。
+修正題號：602, 604, 607, 612, 617, 622, 626, 627, 631, 632, 637, 642, 646, 647, 648, 649, 650, 653, 656, 657, 658, 659, 660, 668, 861, 865, 869, 873, 877, 879, 881, 883, 885, 887, 889, 891, 893, 895, 897, 899。舊的進行中練習若包含修改題目，繼續時會重新開始；其他紀錄不主動清除。

@@ -1,0 +1,27 @@
+name: Generate Taiwan Mandarin audio
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - generate_audio.py
+      - index.html
+      - .github/workflows/edge-audio.yml
+permissions:
+  contents: write
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install edge-tts
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python generate_audio.py
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add audio index.html
+          git diff --cached --quiet || git commit -m 'Generate Taiwan Mandarin listening audio'
+          git push
